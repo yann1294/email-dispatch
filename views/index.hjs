@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
-  </body>
+
+<head>
+  <title>{{ title }}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>SendEmail</h1>
+  <form action="/api/send">
+    <input type="text" name="recipient" placeholder="Recipient" /><br>
+    <input type="text" name="subject" placeholder="subject" /><br>
+    <textarea name="content" placeholder="Content" id="" cols="30" rows="10"></textarea><br>
+    <button type="submit">Send</button>
+
+  </form>
+</body>
+
 </html>
