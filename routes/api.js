@@ -2,28 +2,60 @@ var express = require('express');
 var router = express.Router();
 const sgMail = require('@sendgrid/mail');
 
-router.get('/:action', function(req, res, next) {
+router.post('/:action', function(req, res, next) {
   var action = req.params.action
 
   if (action == 'send') {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-      to: 'dev.yann12@gmail.com',
+      to: req.body.recipient,
       from: 'aguidissou.abrahamyann@adgroupe.io', // Use the email address or domain you verified above
-      subject: 'Sending with Twilio SendGrid is Fun',
-      text: 'and easy to do anywhere, even with Node.js',
-      html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+      subject: req.body.subject,
+      text: 'text/html',
+      html: req.body.content,
     };
     sgMail
-    .send(msg)
-    .then(() => {
-      console.log('Email sent')
-    })
-    .catch((error) => {
-      console.error(error)
-    })  
+  .send(msg)
+  .then(() => {}, error => {
+    console.error(error);
+
+    if (error.response) {
+      console.error(error.response.body)
+    }
+  }); 
   }
 });
+
+// router.get('/:action', function(req, res, next) {
+//   var action = req.params.action
+
+//   if (action == 'send') {
+//     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+//     const msg = {
+//       to: 'dev.yann12@gmail.com',
+//       from: 'aguidissou.abrahamyann@adgroupe.io', // Use the email address or domain you verified above
+//       subject: 'Sending with Twilio SendGrid is Fun',
+//       text: 'and easy to do anywhere, even with Node.js',
+//       html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+//     };
+//     sgMail
+//     .send(msg)
+//     .then(() => {
+//       console.log('Email sent')
+//       res.json({
+//         confirmation: 'success',
+//         response: res
+//       })
+//     })
+//     .catch((error) => {
+//       console.error(error)
+//       res.json({
+//         confirmation: 'fail',
+//         message: error
+//       })
+//     })  
+//   }
+// });
 
 
 

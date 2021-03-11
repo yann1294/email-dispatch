@@ -8,7 +8,7 @@
 
 <body>
   <h1>SendEmail</h1>
-  <form action="/api/send">
+  <form action="/api/send" method="post">
     <input type="text" name="recipient" placeholder="Recipient" /><br>
     <input type="text" name="subject" placeholder="subject" /><br>
     <textarea name="content" placeholder="Content" id="" cols="30" rows="10"></textarea><br>
