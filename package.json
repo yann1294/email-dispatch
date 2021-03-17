@@ -6,7 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.4.2",
+    "@sendgrid/mail": "^6.0.0-beta.5",
+    "bluebird": "^3.7.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
